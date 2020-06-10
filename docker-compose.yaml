@@ -12,7 +12,10 @@ services:
       - 80:80
     expose:
       - 4688
-
+    volumes:
+      - ./www:/var/www/html 
+      - ./apache-configs/mod_status.conf:/etc/apache2/mods-enabled/status.conf
+      - ./apache-configs/ports.conf:/etc/apache2/ports.conf
     networks:
         - metrics
 
