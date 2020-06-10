@@ -9,10 +9,9 @@ services:
     image: php:7.1-apache
     restart: always
     ports:
-      - 80
+      - 80:80
     expose:
-      - 8000
-    environment:
+      - 4688
 
     networks:
         - metrics
