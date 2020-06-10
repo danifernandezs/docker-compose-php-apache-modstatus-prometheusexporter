@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+# Official PHP+Apache container
+# https://hub.docker.com/_/php
+
+  php-apache:
+    container_name: php-apache
+    image: php:7.1-apache
+    restart: always
+    ports:
+      - 80
+    expose:
+      - 8000
+    environment:
+
+    networks:
+        - metrics
+
+networks:
+    metrics:
