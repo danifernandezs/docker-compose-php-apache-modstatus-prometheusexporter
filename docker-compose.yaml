@@ -26,14 +26,32 @@ services:
 # https://hub.docker.com/repository/docker/danifernandezs/prometheus-apache-exporter
 
   prom-exporter:
-    container_name: apache_exporter
+    container_name: apache-exporter
     image: danifernandezs/prometheus-apache-exporter:v0.8.0
     restart: always
     expose:
-      - 9117:9117
+      - 9117
     command: --scrape_uri="http://php-apache:4688/apache-stats/?auto"
     networks:
       - metrics
+      - prometheus
+
+# Node Exporter Official container
+# https://hub.docker.com/r/prom/node-exporter
+
+  node-exporter:
+    container_name: prometheus-node-exporter
+    image: prom/node-exporter:v1.0.0
+    restart: always
+    expose:
+      - 9100
+    networks:
+      - prometheus
+
+
+
+
 
 networks:
     metrics:
+    prometheus:
