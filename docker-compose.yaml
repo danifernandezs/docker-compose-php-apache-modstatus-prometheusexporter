@@ -62,10 +62,23 @@ services:
     command:
       - '--config.file=/prometheus/prometheus.yaml'
       - '--storage.tsdb.path=/data'
-    ports:
-      - 9090:9090
+    expose:
+      - 9090
     networks:
       - prometheus
+
+# Grafana Official container
+# https://hub.docker.com/r/grafana/grafana
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:7.0.3
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - prometheus
+
 
 networks:
     metrics:
