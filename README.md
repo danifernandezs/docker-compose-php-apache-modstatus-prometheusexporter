@@ -2,6 +2,7 @@
 Simple docker-compose with php-aoache container with mod_status as virtualhost and the prometheus exporter to feed it
 
 
+a phpinfo document to check that it's working
 
 
 ## License
