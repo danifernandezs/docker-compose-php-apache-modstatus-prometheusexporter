@@ -19,5 +19,21 @@ services:
     networks:
         - metrics
 
+# Prometheus Apache Exporter
+# Official GitHub Repo
+# https://github.com/Lusitaniae/apache_exporter
+# My own docker container at the DockerHub
+# https://hub.docker.com/repository/docker/danifernandezs/prometheus-apache-exporter
+
+  prom-exporter:
+    container_name: apache_exporter
+    image: danifernandezs/prometheus-apache-exporter:v0.8.0
+    restart: always
+    expose:
+      - 9117:9117
+    command: --scrape_uri="http://php-apache:4688/apache-stats/?auto"
+    networks:
+      - metrics
+
 networks:
     metrics:
