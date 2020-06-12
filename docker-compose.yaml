@@ -48,9 +48,24 @@ services:
     networks:
       - prometheus
 
+# Prometheus Official container
+# https://hub.docker.com/r/prom/prometheus
 
-
-
+  prometheus:
+    container_name: prometheus-server
+    image: prom/prometheus:v2.19.0
+    restart: always
+    user: root
+    volumes:
+      - ./prometheus/config:/prometheus
+      - ./prometheus/data/prometheus:/data
+    command:
+      - '--config.file=/prometheus/prometheus.yaml'
+      - '--storage.tsdb.path=/data'
+    ports:
+      - 9090:9090
+    networks:
+      - prometheus
 
 networks:
     metrics:
