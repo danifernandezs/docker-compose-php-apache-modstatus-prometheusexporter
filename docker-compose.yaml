@@ -56,14 +56,14 @@ services:
     image: prom/prometheus:v2.19.0
     restart: always
     user: root
+    expose:
+      - 9090
     volumes:
       - ./prometheus/config:/prometheus
       - ./prometheus/data/prometheus:/data
     command:
       - '--config.file=/prometheus/prometheus.yaml'
       - '--storage.tsdb.path=/data'
-    expose:
-      - 9090
     networks:
       - prometheus
 
@@ -76,6 +76,9 @@ services:
     restart: always
     ports:
       - 3000:3000
+    volumes:
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
     networks:
       - prometheus
 
